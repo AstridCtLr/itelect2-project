@@ -2,8 +2,12 @@
 ---
 
 **Author**: James Israel Carandang
+
+
 **Description**: GT1 in ITElect2
 **Basic git commands**
+
+
 git init
 git add
 git commit
