@@ -18,24 +18,13 @@ git push
 # API TESTING
 
 # GET
-![
-    
-](<Pictures/Screenshot 2026-08-11 at 8.41.35 PM.png>)
 
+![GET](Pictures/get.png)
 # POST
 
-![
-    
-](<Pictures/Screenshot 2026-08-11 at 8.52.00 PM.png>)
-
+![POST](Pictures/post.png)
 # PUT
 
-![
-    
-](<Pictures/Screenshot 2026-08-11 at 8.58.25 PM.png>)
-
+![PUT](Pictures/put.png)
 # DELETE
-
-![
-    
-](<Pictures/Screenshot 2026-08-11 at 8.59.42 PM.png>)
+![DELETE](Pictures/delete.png)
