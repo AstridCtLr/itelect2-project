@@ -26,5 +26,17 @@ git push
 # PUT
 
 ![PUT](Pictures/put.png)
+
 # DELETE
+
 ![DELETE](Pictures/delete.png)
+
+# PG ADMIN TABLES
+----
+# Task Table
+
+![Task Table](Pictures/tasks.png)
+
+# User Table
+
+![User Table](Pictures/user.png)
