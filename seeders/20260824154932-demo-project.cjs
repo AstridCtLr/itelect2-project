@@ -1,16 +1,23 @@
 'use strict';
 
+const bcrypt = require('bcryptjs');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     const now = new Date();
+    const [astridPassword, jamesPassword, mariaPassword] = await Promise.all([
+      bcrypt.hash('astrid123', 10),
+      bcrypt.hash('james1234', 10),
+      bcrypt.hash('maria1234', 10)
+    ]);
 
     await queryInterface.bulkInsert('Users', [
-      { name: 'Astrid Cruz', email: 'astrid@itelect.test',
+      { name: 'Astrid Cruz', email: 'astrid@itelect.test', password: astridPassword, role: 'member',
         createdAt: now, updatedAt: now },
-      { name: 'James Carandang', email: 'james@itelect.test',
+      { name: 'James Carandang', email: 'james@itelect.test', password: jamesPassword, role: 'member',
         createdAt: now, updatedAt: now },
-      { name: 'Maria Santos', email: 'maria@itelect.test',
+      { name: 'Maria Santos', email: 'maria@itelect.test', password: mariaPassword, role: 'member',
         createdAt: now, updatedAt: now }
     ]);
 
