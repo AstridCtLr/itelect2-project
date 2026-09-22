@@ -2,12 +2,12 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../models/index.cjs';
+import verifyToken from '../middleware/verifyToken.js';
 
 const { User } = db;
 const router = express.Router();
 const SALT_ROUNDS = 10;
 
-// POST /api/auth/register
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
 
@@ -21,13 +21,11 @@ router.post('/register', async (req, res) => {
   }
 
   const hash = await bcrypt.hash(password, SALT_ROUNDS);
-  // Deliberately do not accept role from a request body.
   const user = await User.create({ email, password: hash });
 
   return res.status(201).json(user);
 });
 
-// POST /api/auth/login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
@@ -48,6 +46,10 @@ router.post('/login', async (req, res) => {
   );
 
   return res.json({ token });
+});
+
+router.get('/me', verifyToken, (req, res) => {
+  res.json({ user: req.user });
 });
 
 export default router;
