@@ -3,15 +3,18 @@ import db from '../models/index.cjs';
 
 const { Task, User } = db;
 
+// Keep hashes out of users included in public task responses.
+const publicUser = { model: User, attributes: { exclude: ['password'] } };
+
 const router = express.Router();
 
 router.get('/tasks', async (req, res) => {
-    const tasks = await Task.findAll({ include: User });
+    const tasks = await Task.findAll({ include: publicUser });
     res.json(tasks);
 });
 
 router.get('/tasks/:id', async (req, res) => {
-    const task = await Task.findByPk(req.params.id, { include: User });
+    const task = await Task.findByPk(req.params.id, { include: publicUser });
 
     if (!task) {
         return res.status(404).json({ error: 'Task not found' });
